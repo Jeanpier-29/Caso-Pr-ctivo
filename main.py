@@ -37,7 +37,8 @@ def mostrar_menu():
     print("1. Registrar solicitud")
     print("2. Consultar solicitudes")
     print("3. Eliminar solicitud")
-    print("4. Salir")
+    print("4. Consultar por tipo")
+    print("5. Salir")
 
 # Req.5: Calcular prioridad
 def calcular_prioridad(tipo):
@@ -95,7 +96,14 @@ def eliminar_solicitud(codigo):
             return
     print("No se encontró ninguna solicitud con el código:", codigo)
 
+# Req.12: Salir del sistema
+def salir():
+    print("Saliendo del sistema... ¡Hasta pronto!")
+    exit()
+
+# ============================
 # Ejemplos de ejecución
+# ============================
 
 # Registrar solicitudes
 sol1 = registrar_solicitud("202601", "Ana", "matricula", "Problema con inscripción")
@@ -104,22 +112,22 @@ agregar_solicitud(sol1)
 sol2 = registrar_solicitud("202602", "Luis", "constancia", "Solicitud de certificado")
 agregar_solicitud(sol2)
 
-sol3 = registrar_solicitud("202603", "Pedro", "pagos", "Consulta sobre deuda")
-agregar_solicitud(sol3)
-
-# Consultar por código existente
+# Consultar por código
 consultar_solicitud("202601")
 
-# Eliminar solicitud existente
+# Consultar por tipo
+consultar_por_tipo("matricula")
+
+# Eliminar solicitud
 eliminar_solicitud("202602")
 
-# Intentar eliminar solicitud inexistente
-eliminar_solicitud("999999")
-
-# Mostrar lista final de solicitudes
+# Mostrar lista final
 print("=== LISTA FINAL DE SOLICITUDES ===")
 for s in solicitudes:
     mostrar_resumen(s)
 
 # Mostrar menú principal
 mostrar_menu()
+
+# Salir del sistema
+salir()
