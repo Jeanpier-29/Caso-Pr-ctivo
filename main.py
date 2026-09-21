@@ -44,31 +44,40 @@ def calcular_prioridad(tipo):
         return "Alta"
     else:
         return "Baja"
+
+# Req.7: Mostrar resumen de solicitud
+def mostrar_resumen(solicitud):
+    if isinstance(solicitud, dict):
+        print("=== RESUMEN DE SOLICITUD ===")
+        print("Código:", solicitud["codigo"])
+        print("Nombre:", solicitud["nombre"])
+        print("Tipo:", solicitud["tipo"])
+        print("Descripción:", solicitud["descripcion"])
+        print("Prioridad:", calcular_prioridad(solicitud["tipo"]))
+    else:
+        print("No se puede mostrar resumen:", solicitud)
+
 # Ejemplos de ejecución
 
 # Caso válido
 sol1 = registrar_solicitud("202601", "Ana", "matricula", "Problema con inscripción")
-print("Código:", sol1["codigo"])
-print("Nombre:", sol1["nombre"])
-print("Tipo:", sol1["tipo"])
-print("Descripción:", sol1["descripcion"])
-print("Prioridad:", calcular_prioridad(sol1["tipo"]))
+mostrar_resumen(sol1)
 
 # Caso inválido: código vacío
 sol2 = registrar_solicitud("", "Luis", "pagos", "Consulta sobre deuda")
-print(sol2)
+mostrar_resumen(sol2)
 
 # Caso inválido: tipo incorrecto
 sol3 = registrar_solicitud("202602", "María", "biblioteca", "Consulta sobre préstamo")
-print(sol3)
+mostrar_resumen(sol3)
 
 # Caso inválido: nombre vacío
 sol4 = registrar_solicitud("202603", "", "constancia", "Solicitud de certificado")
-print(sol4)
+mostrar_resumen(sol4)
 
 # Caso inválido: descripción vacía
 sol5 = registrar_solicitud("202604", "Pedro", "constancia", "")
-print(sol5)
+mostrar_resumen(sol5)
 
 # Mostrar menú principal
 mostrar_menu()
