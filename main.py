@@ -36,7 +36,8 @@ def mostrar_menu():
     print("=== MENÚ PRINCIPAL ===")
     print("1. Registrar solicitud")
     print("2. Consultar solicitudes")
-    print("3. Salir")
+    print("3. Eliminar solicitud")
+    print("4. Salir")
 
 # Req.5: Calcular prioridad
 def calcular_prioridad(tipo):
@@ -85,6 +86,15 @@ def consultar_por_tipo(tipo):
     else:
         print("No se encontraron solicitudes del tipo:", tipo)
 
+# Req.11: Eliminar solicitud por código
+def eliminar_solicitud(codigo):
+    for s in solicitudes:
+        if s["codigo"] == codigo:
+            solicitudes.remove(s)
+            print("Solicitud eliminada correctamente:", codigo)
+            return
+    print("No se encontró ninguna solicitud con el código:", codigo)
+
 # Ejemplos de ejecución
 
 # Registrar solicitudes
@@ -100,14 +110,16 @@ agregar_solicitud(sol3)
 # Consultar por código existente
 consultar_solicitud("202601")
 
-# Consultar por código inexistente
-consultar_solicitud("999999")
+# Eliminar solicitud existente
+eliminar_solicitud("202602")
 
-# Consultar por tipo existente
-consultar_por_tipo("matricula")
+# Intentar eliminar solicitud inexistente
+eliminar_solicitud("999999")
 
-# Consultar por tipo inexistente
-consultar_por_tipo("biblioteca")
+# Mostrar lista final de solicitudes
+print("=== LISTA FINAL DE SOLICITUDES ===")
+for s in solicitudes:
+    mostrar_resumen(s)
 
 # Mostrar menú principal
 mostrar_menu()
