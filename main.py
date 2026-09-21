@@ -23,6 +23,13 @@ def registrar_solicitud(codigo, nombre, tipo, descripcion):
     }
     return solicitud
 
+# Req.4: Mostrar menú principal
+def mostrar_menu():
+    print("=== MENÚ PRINCIPAL ===")
+    print("1. Registrar solicitud")
+    print("2. Consultar solicitudes")
+    print("3. Salir")
+
 # Ejemplo de ejecución válido
 sol1 = registrar_solicitud("202601", "Ana", "matricula", "Problema con inscripción")
 print("Código:", sol1["codigo"])
@@ -30,7 +37,14 @@ print("Nombre:", sol1["nombre"])
 print("Tipo:", sol1["tipo"])
 print("Descripción:", sol1["descripcion"])
 
-# Prueba con tipo inválido
-sol2 = registrar_solicitud("202602", "Luis", "biblioteca", "Consulta sobre préstamo")
+# Prueba con código inválido
+sol2 = registrar_solicitud("", "Luis", "pagos", "Consulta sobre deuda")
 print(sol2)
+
+# Prueba con tipo inválido
+sol3 = registrar_solicitud("202602", "María", "biblioteca", "Consulta sobre préstamo")
+print(sol3)
+
+# Mostrar menú principal
+mostrar_menu()
 
