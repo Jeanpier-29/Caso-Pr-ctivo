@@ -11,6 +11,19 @@ def validar_tipo(tipo):
 # Req.6: Validar texto obligatorio
 def validar_texto(texto):
     return texto != "" and texto.strip() != ""
+# Req.2: Validar código
+def validar_codigo(codigo):
+    return codigo != "" and len(codigo) >= 5
+
+# Req.3: Validar tipo de consulta
+TIPOS_VALIDOS = ["matricula", "pagos", "constancia", "plataforma", "otro"]
+
+def validar_tipo(tipo):
+    return tipo.lower() in TIPOS_VALIDOS
+
+# Req.6: Validar texto obligatorio
+def validar_texto(texto):
+    return texto != "" and texto.strip() != ""
 
 # Req.1: Registrar solicitud
 def registrar_solicitud(codigo, nombre, tipo, descripcion):
@@ -67,37 +80,28 @@ def agregar_solicitud(solicitud):
     else:
         print("No se pudo registrar la solicitud:", solicitud)
 
+# Req.9: Consultar solicitudes por código
+def consultar_solicitud(codigo):
+    for s in solicitudes:
+        if s["codigo"] == codigo:
+            mostrar_resumen(s)
+            return
+    print("No se encontró ninguna solicitud con el código:", codigo)
+
 # Ejemplos de ejecución
 
 # Caso válido
 sol1 = registrar_solicitud("202601", "Ana", "matricula", "Problema con inscripción")
-mostrar_resumen(sol1)
 agregar_solicitud(sol1)
 
-# Caso inválido: código vacío
-sol2 = registrar_solicitud("", "Luis", "pagos", "Consulta sobre deuda")
-mostrar_resumen(sol2)
+sol2 = registrar_solicitud("202602", "Luis", "constancia", "Solicitud de certificado")
 agregar_solicitud(sol2)
 
-# Caso inválido: tipo incorrecto
-sol3 = registrar_solicitud("202602", "María", "biblioteca", "Consulta sobre préstamo")
-mostrar_resumen(sol3)
-agregar_solicitud(sol3)
+# Consultar por código existente
+consultar_solicitud("202601")
 
-# Caso inválido: nombre vacío
-sol4 = registrar_solicitud("202603", "", "constancia", "Solicitud de certificado")
-mostrar_resumen(sol4)
-agregar_solicitud(sol4)
-
-# Caso inválido: descripción vacía
-sol5 = registrar_solicitud("202604", "Pedro", "constancia", "")
-mostrar_resumen(sol5)
-agregar_solicitud(sol5)
+# Consultar por código inexistente
+consultar_solicitud("999999")
 
 # Mostrar menú principal
 mostrar_menu()
-
-# Mostrar lista de solicitudes almacenadas
-print("=== LISTA DE SOLICITUDES ===")
-for s in solicitudes:
-    mostrar_resumen(s)
