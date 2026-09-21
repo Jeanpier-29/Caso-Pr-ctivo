@@ -8,12 +8,20 @@ TIPOS_VALIDOS = ["matricula", "pagos", "constancia", "plataforma", "otro"]
 def validar_tipo(tipo):
     return tipo.lower() in TIPOS_VALIDOS
 
+# Req.6: Validar texto obligatorio
+def validar_texto(texto):
+    return texto != "" and texto.strip() != ""
+
 # Req.1: Registrar solicitud
 def registrar_solicitud(codigo, nombre, tipo, descripcion):
     if not validar_codigo(codigo):
         return "Error: código inválido"
     if not validar_tipo(tipo):
         return "Error: tipo inválido"
+    if not validar_texto(nombre):
+        return "Error: nombre inválido"
+    if not validar_texto(descripcion):
+        return "Error: descripción inválida"
 
     solicitud = {
         "codigo": codigo,
@@ -36,7 +44,6 @@ def calcular_prioridad(tipo):
         return "Alta"
     else:
         return "Baja"
-
 # Ejemplos de ejecución
 
 # Caso válido
@@ -55,6 +62,13 @@ print(sol2)
 sol3 = registrar_solicitud("202602", "María", "biblioteca", "Consulta sobre préstamo")
 print(sol3)
 
+# Caso inválido: nombre vacío
+sol4 = registrar_solicitud("202603", "", "constancia", "Solicitud de certificado")
+print(sol4)
+
+# Caso inválido: descripción vacía
+sol5 = registrar_solicitud("202604", "Pedro", "constancia", "")
+print(sol5)
+
 # Mostrar menú principal
 mostrar_menu()
-
