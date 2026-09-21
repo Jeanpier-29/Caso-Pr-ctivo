@@ -11,19 +11,6 @@ def validar_tipo(tipo):
 # Req.6: Validar texto obligatorio
 def validar_texto(texto):
     return texto != "" and texto.strip() != ""
-# Req.2: Validar código
-def validar_codigo(codigo):
-    return codigo != "" and len(codigo) >= 5
-
-# Req.3: Validar tipo de consulta
-TIPOS_VALIDOS = ["matricula", "pagos", "constancia", "plataforma", "otro"]
-
-def validar_tipo(tipo):
-    return tipo.lower() in TIPOS_VALIDOS
-
-# Req.6: Validar texto obligatorio
-def validar_texto(texto):
-    return texto != "" and texto.strip() != ""
 
 # Req.1: Registrar solicitud
 def registrar_solicitud(codigo, nombre, tipo, descripcion):
@@ -88,20 +75,39 @@ def consultar_solicitud(codigo):
             return
     print("No se encontró ninguna solicitud con el código:", codigo)
 
+# Req.10: Consultar solicitudes por tipo
+def consultar_por_tipo(tipo):
+    encontrados = [s for s in solicitudes if s["tipo"].lower() == tipo.lower()]
+    if encontrados:
+        print(f"=== SOLICITUDES DE TIPO: {tipo.upper()} ===")
+        for s in encontrados:
+            mostrar_resumen(s)
+    else:
+        print("No se encontraron solicitudes del tipo:", tipo)
+
 # Ejemplos de ejecución
 
-# Caso válido
+# Registrar solicitudes
 sol1 = registrar_solicitud("202601", "Ana", "matricula", "Problema con inscripción")
 agregar_solicitud(sol1)
 
 sol2 = registrar_solicitud("202602", "Luis", "constancia", "Solicitud de certificado")
 agregar_solicitud(sol2)
 
+sol3 = registrar_solicitud("202603", "Pedro", "pagos", "Consulta sobre deuda")
+agregar_solicitud(sol3)
+
 # Consultar por código existente
 consultar_solicitud("202601")
 
 # Consultar por código inexistente
 consultar_solicitud("999999")
+
+# Consultar por tipo existente
+consultar_por_tipo("matricula")
+
+# Consultar por tipo inexistente
+consultar_por_tipo("biblioteca")
 
 # Mostrar menú principal
 mostrar_menu()
