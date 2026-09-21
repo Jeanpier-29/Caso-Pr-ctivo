@@ -57,27 +57,47 @@ def mostrar_resumen(solicitud):
     else:
         print("No se puede mostrar resumen:", solicitud)
 
+# Req.8: Almacenar solicitudes en una lista
+solicitudes = []
+
+def agregar_solicitud(solicitud):
+    if isinstance(solicitud, dict):
+        solicitudes.append(solicitud)
+        print("Solicitud registrada correctamente.")
+    else:
+        print("No se pudo registrar la solicitud:", solicitud)
+
 # Ejemplos de ejecución
 
 # Caso válido
 sol1 = registrar_solicitud("202601", "Ana", "matricula", "Problema con inscripción")
 mostrar_resumen(sol1)
+agregar_solicitud(sol1)
 
 # Caso inválido: código vacío
 sol2 = registrar_solicitud("", "Luis", "pagos", "Consulta sobre deuda")
 mostrar_resumen(sol2)
+agregar_solicitud(sol2)
 
 # Caso inválido: tipo incorrecto
 sol3 = registrar_solicitud("202602", "María", "biblioteca", "Consulta sobre préstamo")
 mostrar_resumen(sol3)
+agregar_solicitud(sol3)
 
 # Caso inválido: nombre vacío
 sol4 = registrar_solicitud("202603", "", "constancia", "Solicitud de certificado")
 mostrar_resumen(sol4)
+agregar_solicitud(sol4)
 
 # Caso inválido: descripción vacía
 sol5 = registrar_solicitud("202604", "Pedro", "constancia", "")
 mostrar_resumen(sol5)
+agregar_solicitud(sol5)
 
 # Mostrar menú principal
 mostrar_menu()
+
+# Mostrar lista de solicitudes almacenadas
+print("=== LISTA DE SOLICITUDES ===")
+for s in solicitudes:
+    mostrar_resumen(s)
